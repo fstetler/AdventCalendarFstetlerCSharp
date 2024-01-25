@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace AdventCalendarCsharp {
     public class Primary {
         public static void Main(string[] args) {
-            Console.WriteLine("hejsan");
+            DayOne dayOne = new DayOne();
+            dayOne.printSolutionOne();
         }
+
     }
 }
