@@ -34,6 +34,16 @@ namespace AdventCalendarC_.dayone {
             return numbers;
         }
 
+        public List<int> numbersFromRightPartOne(List<String> strings) {
+            List<int> numbers = new List<int>();
+
+            for (int i = 0; i < strings.Count; i++) {
+                int numberFromLeft = getFirstNumberFromReversedStringPartOne(strings[i]);
+                numbers.Add(numberFromLeft);
+            }
+            return numbers;
+        }
+
         public int getFirstNumberFromReversedStringPartOne(string s) {
             String newS = reverseString(s);
             return getFirstNumberFromStringPartOne(newS);
@@ -46,7 +56,6 @@ namespace AdventCalendarC_.dayone {
                 }
              
             }
-//  gör ot till int
             throw new Exception("hey");
         }
 
