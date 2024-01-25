@@ -8,47 +8,34 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
         
-        public string getFirstNumberFromString(string s, bool reversed, bool partOne) {
+        public string getFirstNumberFromString(string s, bool partOne) {
+            List<string> numbersAsString = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
+            return getNumberFromString(partOne, numbersAsString, s);
+        }
 
-            String result = "";
+        public string getFirstNumberFromReversedString(string s, bool partOne) {
+            List<string> numbersAsString = ["eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"];
+            String newS = reverseString(s);
+            return getNumberFromString(partOne, numbersAsString, newS);
+        }
 
-            List<string> numbersAsString = getNumbersAsString(s, reversed);
-            s = getString(s, reversed);
-
-            bool found = false;
-            for (int i = 0; i < s.Length; i++ ) {
-                if (Char.IsDigit(s[i])) {
-                    result = s[i].ToString();
-                    break;
-                } else {
+        private string getNumberFromString(bool partOne, List<string> numbersAsString, string newS) {
+            for (int i = 0; i < newS.Length; i++) {
+                if (Char.IsDigit(newS[i])) {
+                    Console.WriteLine("Hallå");
+                    return newS[i].ToString();
+                }
+                if (!partOne) {
                     for (int j = 0; j < numbersAsString.Count(); j++) {
-                        if (s.Substring(i).StartsWith(numbersAsString[j]) && !partOne) {
-                            result = (j+1).ToString();
-                            found = true;
-                            break;
+                        if (newS.Substring(i).StartsWith(numbersAsString[j])) {
+                            Console.WriteLine("hejsan");
+                            return (j + 1).ToString();
                         }
                     }
                 }
-                if (found) {
-                    break;
-                }
             }
-
-            return result;
-        }
-
-        public List<string> getNumbersAsString(String s, Boolean reversed) { 
-            if (reversed) {
-                return ["eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"];
-            }
-            return ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
-        }
-
-        public string getString(string s, bool reversed) {
-            if (reversed) {
-                return reverseString(s);
-            }
-            return s;
+//  gör ot till int
+            throw new Exception("hey");
         }
 
         private string reverseString(string s) {
@@ -56,10 +43,6 @@ namespace AdventCalendarC_.dayone {
             Array.Reverse(charArray);
             return new string(charArray);
         }
-
-
-
-
 
         public void printSolutionOne() {
             Console.WriteLine(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt")[0]);

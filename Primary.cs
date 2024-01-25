@@ -9,6 +9,7 @@ namespace AdventCalendarCsharp {
     public class Primary {
         public static void Main(string[] args) {
             DayOne dayOne = new DayOne();
+            Console.WriteLine("TJENA");
             dayOne.printSolutionOne();
         }
 
