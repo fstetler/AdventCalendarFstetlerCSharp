@@ -8,27 +8,33 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
         
-        public string? getFirstNumberFromString(string s, bool reversed, bool partOne) {
+        public string getFirstNumberFromString(string s, bool reversed, bool partOne) {
 
-            
+            String result = "";
 
             List<string> numbersAsString = getNumbersAsString(s, reversed);
             s = getString(s, reversed);
 
+            bool found = false;
             for (int i = 0; i < s.Length; i++ ) {
                 if (Char.IsDigit(s[i])) {
-                    return s[i].ToString();
+                    result = s[i].ToString();
+                    break;
                 } else {
-
-                }
-                for (int j = 0; j < numbersAsString.Count(); j++) {
-                    if (s.Substring(i).StartsWith(numbersAsString[j]) && !partOne) {
-                        return (j+1).ToString();
+                    for (int j = 0; j < numbersAsString.Count(); j++) {
+                        if (s.Substring(i).StartsWith(numbersAsString[j]) && !partOne) {
+                            result = (j+1).ToString();
+                            found = true;
+                            break;
+                        }
                     }
+                }
+                if (found) {
+                    break;
                 }
             }
 
-            return null;
+            return result;
         }
 
         public List<string> getNumbersAsString(String s, Boolean reversed) { 
