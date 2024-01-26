@@ -41,6 +41,7 @@ namespace AdventCalendarC_.dayone {
 
             foreach (string s in listOfCombinedNumbers) {
                 sum += int.Parse(s);
+                Console.WriteLine("hey");
             }
             return sum;
         }
