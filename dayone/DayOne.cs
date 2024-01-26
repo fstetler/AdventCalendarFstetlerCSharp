@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,78 +9,51 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
-        readonly List<string> reversedNumbersAsString = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
-        readonly List<string> numbersAsString = ["eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"];
+        public string returnFirstNumberFromString(string currentString, bool reversed, bool partOne) {
 
-
-        //public int solvePartOne(List<String> strings) {
-        //    for (int i = 0; i < strings.Count; i++) {
-        //        string s = strings[i];
-        //        int numberFromLeft = getFirstNumberFromStringPartOne(s);
-        //        int numberFromRight = getFirstNumberFromReversedStringPartOne(s);
-
-
-
-        //    }
-        //}
-
-        public List<int> numbersFromLeftPartOne(List<String> strings) {
-            List<int> numbers = new List<int>();
-
-            for (int i = 0; i < strings.Count; i++) {
-                int numberFromLeft = getFirstNumberFromStringPartOne(strings[i]);
-                numbers.Add(numberFromLeft);
+            List<string> listOfNumbersAsWords;
+            if (reversed) {
+                listOfNumbersAsWords = new List<string>() { "eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin" };
+                currentString = reverseString(currentString);
+            } else {
+                listOfNumbersAsWords = new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
             }
-            return numbers;
-        }
 
-        public List<int> numbersFromRightPartOne(List<String> strings) {
-            List<int> numbers = new List<int>();
-
-            for (int i = 0; i < strings.Count; i++) {
-                int numberFromLeft = getFirstNumberFromReversedStringPartOne(strings[i]);
-                numbers.Add(numberFromLeft);
-            }
-            return numbers;
-        }
-
-        public int getFirstNumberFromReversedStringPartOne(string s) {
-            String newS = reverseString(s);
-            return getFirstNumberFromStringPartOne(newS);
-        }
-
-        public int getFirstNumberFromStringPartOne(string s) {
-            for (int i = 0; i < s.Length; i++) {
-                if (Char.IsDigit(s[i])) {
-                    return (int) Char.GetNumericValue(s[i]);
-                }
-             
-            }
-            throw new Exception("hey");
-        }
-
-        public int getNumberFromStringPartTwo(bool partOne, List<string> numbersAsString, string s) {
-            for (int i = 0; i < s.Length; i++) {
-                if (Char.IsDigit(s[i])) {
-                    return (int)Char.GetNumericValue(s[i]);
+            for (int i = 0; i < currentString.Length; i++) {
+                if (char.IsDigit(currentString[i])) {
+                    return currentString[i].ToString();
                 }
                 if (!partOne) {
-                    for (int j = 0; j < numbersAsString.Count(); j++) {
-                        if (s.Substring(i).StartsWith(numbersAsString[j])) {
-                            return (j + 1);
+                    for (int j = 0; j < listOfNumbersAsWords.Count; j++) {
+                        if (currentString.Substring(i).StartsWith(listOfNumbersAsWords[j])) {
+                            return (j+1).ToString();
                         }
                     }
                 }
             }
-            throw new Exception("Shouldnt happen");
+
+            return null;
         }
 
-        private string reverseString(string s) {
+        public int addAllNumbersTogether(List<string> listOfCombinedNumbers) {
+            int sum = 0;
+
+            foreach (string s in listOfCombinedNumbers) {
+                sum += int.Parse(s);
+            }
+            return sum;
+        }
+
+
+        public string reverseString(string s) {
             char[] charArray = s.ToCharArray();
             Array.Reverse(charArray);
             return new string(charArray);
         }
+        
+
+
 
         public void printSolutionOne() {
         
