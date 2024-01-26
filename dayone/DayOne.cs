@@ -42,8 +42,8 @@ namespace AdventCalendarC_.dayone {
                     }
                 }
             }
-            // How would I get rid of the null here?
-            return null;
+
+            throw new Exception("No number in the string was found");
         }
 
         public int resultsPartOne(List<string> strings) {
@@ -82,8 +82,7 @@ namespace AdventCalendarC_.dayone {
             List<string> combinedNumbers = new List<string>();
 
             for (int i = 0; left.Count > i; i++) {
-                string number = "";
-                number = left[i].ToString() + right[i].ToString();
+                string number =  left[i].ToString() + right[i].ToString();
                 combinedNumbers.Add(number);
             }
             return combinedNumbers;
