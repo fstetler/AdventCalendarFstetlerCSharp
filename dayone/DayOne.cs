@@ -10,27 +10,60 @@ namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
 
-        public string returnFirstNumberFromString(string currentString, bool reversed, bool partOne) {
-
-            List<string> listOfNumbersAsWords;
-            if (reversed) {
-                listOfNumbersAsWords = new List<string>() { "eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin" };
-                currentString = reverseString(currentString);
-            } else {
-                listOfNumbersAsWords = new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+        public string returnFirstNumberFromLeftPartOne(string currentString) {
+            for (int i = 0; i < currentString.Length; i++) {
+                if (char.IsDigit(currentString[i])) {
+                    return currentString[i].ToString();
+                }        
             }
+
+            return null;
+        }
+
+        public string returnFirstNumberFromRightPartOne(string currentString) {
+            string reversedString = reverseString(currentString);
+
+            for (int i = 0; i < reversedString.Length; i++) {
+                if (char.IsDigit(reversedString[i])) {
+                    return reversedString[i].ToString();
+                }
+            }
+
+            return null;
+        }
+
+        public string returnFirstNumberFromLeftPartTwo(string currentString) {
+            List<string> listOfNumbersAsWords = new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
             for (int i = 0; i < currentString.Length; i++) {
                 if (char.IsDigit(currentString[i])) {
                     return currentString[i].ToString();
                 }
-                if (!partOne) {
-                    for (int j = 0; j < listOfNumbersAsWords.Count; j++) {
-                        if (currentString.Substring(i).StartsWith(listOfNumbersAsWords[j])) {
-                            return (j+1).ToString();
-                        }
+
+                for (int j = 0; j < listOfNumbersAsWords.Count; j++) {
+                    if (currentString.Substring(i).StartsWith(listOfNumbersAsWords[j])) {
+                        return (j + 1).ToString();
                     }
                 }
+            }
+            return null;
+        }
+
+        public string returnFirstNumberFromRightPartTwo(string currentString) {
+            List<string> listOfNumbersAsReversedWords = new List<string>() { "eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin" };
+            string reversedString = reverseString(currentString);
+
+            for (int i = 0; i < reversedString.Length; i++) {
+                if (char.IsDigit(reversedString[i])) {
+                    return reversedString[i].ToString();
+                }
+                
+                for (int j = 0; j < listOfNumbersAsReversedWords.Count; j++) {
+                    if (reversedString.Substring(i).StartsWith(listOfNumbersAsReversedWords[j])) {
+                        return (j + 1).ToString();
+                    }
+                }
+              
             }
 
             return null;
@@ -41,29 +74,45 @@ namespace AdventCalendarC_.dayone {
 
             foreach (string s in listOfCombinedNumbers) {
                 sum += int.Parse(s);
-                Console.WriteLine("hey");
             }
             return sum;
         }
 
-        public int results(Boolean isPartOne) {
+        public int resultsPartOne() {
             List<string> listOfStrings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
 
-            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromString(s, false, isPartOne)).ToList();
-            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromString(s, true, isPartOne)).ToList();
+            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromLeftPartOne(s)).ToList();
+            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromRightPartOne(s)).ToList();
 
-            List<string> listOfCombinedNumbersFromLeftAndRight = new List<string>();
+            List<string> combinedNumbers = combineLeftAndRightNumberToList(listOfFirstNumbersFromLeft, listOfFirstNumbersFromRight);
 
-            for (int i = 0; listOfFirstNumbersFromLeft.Count > i; i++) {
-                string number = "";
-                number = listOfFirstNumbersFromLeft[i].ToString() + listOfFirstNumbersFromRight[i].ToString();
-                listOfCombinedNumbersFromLeftAndRight.Add(number);
-            }
-
-            int totalSum = listOfCombinedNumbersFromLeftAndRight.Select(int.Parse).Sum();
+            int totalSum = addAllNumbersTogether(combinedNumbers);
 
             return totalSum;
+         }
 
+        public int resultsPartTwo() {
+            List<string> listOfStrings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
+
+            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromLeftPartTwo(s)).ToList();
+            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromRightPartTwo(s)).ToList();
+
+            List<string> combinedNumbers = combineLeftAndRightNumberToList(listOfFirstNumbersFromLeft, listOfFirstNumbersFromRight);
+
+            int totalSum = addAllNumbersTogether(combinedNumbers);
+
+            return totalSum;
+        }
+
+        public List<string> combineLeftAndRightNumberToList(List<string> left, List<string> right) {
+            List<string> combinedNumbers = new List<string>();
+
+            for (int i = 0; left.Count > i; i++) {
+                string number = "";
+                number = left[i].ToString() + right[i].ToString();
+                combinedNumbers.Add(number);
+            }
+            return combinedNumbers;
         }
 
         public string reverseString(string s) {
@@ -73,19 +122,14 @@ namespace AdventCalendarC_.dayone {
         }
         
 
-
-
-
-
-
         public void printSolutionOne() {
-            Console.WriteLine(results(true));
+            Console.WriteLine(resultsPartOne());
 
 
         }
 
         public void printSolutionTwo() {
-            Console.WriteLine(results(false));
+            Console.WriteLine(resultsPartTwo());
         }
     }
 }
