@@ -10,23 +10,15 @@ namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
 
-        public string returnFirstNumberFromLeftPartOne(string currentString) {
+        public List<string> reverseStrings(List<string> strings) {
+            return strings.Select(s => reverseString(s)).ToList();
+        }
+
+        public string returnFirstNumberPartOne(string currentString) {
             for (int i = 0; i < currentString.Length; i++) {
                 if (char.IsDigit(currentString[i])) {
                     return currentString[i].ToString();
                 }        
-            }
-
-            return null;
-        }
-
-        public string returnFirstNumberFromRightPartOne(string currentString) {
-            string reversedString = reverseString(currentString);
-
-            for (int i = 0; i < reversedString.Length; i++) {
-                if (char.IsDigit(reversedString[i])) {
-                    return reversedString[i].ToString();
-                }
             }
 
             return null;
@@ -81,8 +73,11 @@ namespace AdventCalendarC_.dayone {
         public int resultsPartOne() {
             List<string> listOfStrings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
 
-            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromLeftPartOne(s)).ToList();
-            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromRightPartOne(s)).ToList();
+            List<string> listOfReversedStrings = reverseStrings(listOfStrings);
+
+
+            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberPartOne(s)).ToList();
+            List<string> listOfFirstNumbersFromRight = listOfReversedStrings.Select(s => returnFirstNumberPartOne(s)).ToList();
 
             List<string> combinedNumbers = combineLeftAndRightNumberToList(listOfFirstNumbersFromLeft, listOfFirstNumbersFromRight);
 
