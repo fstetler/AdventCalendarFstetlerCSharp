@@ -46,6 +46,25 @@ namespace AdventCalendarC_.dayone {
             return sum;
         }
 
+        public int results(Boolean isPartOne) {
+            List<string> listOfStrings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
+
+            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromString(s, false, isPartOne)).ToList();
+            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromString(s, true, isPartOne)).ToList();
+
+            List<string> listOfCombinedNumbersFromLeftAndRight = new List<string>();
+
+            for (int i = 0; listOfFirstNumbersFromLeft.Count > i; i++) {
+                string number = "";
+                number = listOfFirstNumbersFromLeft[i].ToString() + listOfFirstNumbersFromRight[i].ToString();
+                listOfCombinedNumbersFromLeftAndRight.Add(number);
+            }
+
+            int totalSum = listOfCombinedNumbersFromLeftAndRight.Select(int.Parse).Sum();
+
+            return totalSum;
+
+        }
 
         public string reverseString(string s) {
             char[] charArray = s.ToCharArray();
@@ -56,12 +75,17 @@ namespace AdventCalendarC_.dayone {
 
 
 
+
+
+
         public void printSolutionOne() {
-        
+            Console.WriteLine(results(true));
+
 
         }
 
         public void printSolutionTwo() {
+            Console.WriteLine(results(false));
         }
     }
 }

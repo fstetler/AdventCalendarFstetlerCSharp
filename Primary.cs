@@ -11,6 +11,7 @@ namespace AdventCalendarCsharp {
         public static void Main(string[] args) {
             DayOne dayOne = new DayOne();
             dayOne.printSolutionOne();
+            dayOne.printSolutionTwo();
         }
     }
 }
