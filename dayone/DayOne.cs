@@ -9,6 +9,14 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
+        public List<string> getNumbersAsWordsReversed() {
+            return ["eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"];
+        }
+
+        public List<string> getNumbersAsWords() {
+            return new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+        }
+
 
         public List<string> reverseStrings(List<string> strings) {
             return strings.Select(s => reverseString(s)).ToList();
@@ -24,16 +32,15 @@ namespace AdventCalendarC_.dayone {
             return null;
         }
 
-        public string returnFirstNumberFromLeftPartTwo(string currentString) {
-            List<string> listOfNumbersAsWords = new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+        public string returnFirstNumberPartTwo(string currentString, List<string> numbersAsWords) {
 
             for (int i = 0; i < currentString.Length; i++) {
                 if (char.IsDigit(currentString[i])) {
                     return currentString[i].ToString();
                 }
 
-                for (int j = 0; j < listOfNumbersAsWords.Count; j++) {
-                    if (currentString.Substring(i).StartsWith(listOfNumbersAsWords[j])) {
+                for (int j = 0; j < numbersAsWords.Count; j++) {
+                    if (currentString.Substring(i).StartsWith(numbersAsWords[j])) {
                         return (j + 1).ToString();
                     }
                 }
@@ -41,25 +48,6 @@ namespace AdventCalendarC_.dayone {
             return null;
         }
 
-        public string returnFirstNumberFromRightPartTwo(string currentString) {
-            List<string> listOfNumbersAsReversedWords = new List<string>() { "eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin" };
-            string reversedString = reverseString(currentString);
-
-            for (int i = 0; i < reversedString.Length; i++) {
-                if (char.IsDigit(reversedString[i])) {
-                    return reversedString[i].ToString();
-                }
-                
-                for (int j = 0; j < listOfNumbersAsReversedWords.Count; j++) {
-                    if (reversedString.Substring(i).StartsWith(listOfNumbersAsReversedWords[j])) {
-                        return (j + 1).ToString();
-                    }
-                }
-              
-            }
-
-            return null;
-        }
 
         public int addAllNumbersTogether(List<string> listOfCombinedNumbers) {
             int sum = 0;
@@ -87,12 +75,16 @@ namespace AdventCalendarC_.dayone {
          }
 
         public int resultsPartTwo() {
-            List<string> listOfStrings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
+            List<string> strings = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt");
 
-            List<string> listOfFirstNumbersFromLeft = listOfStrings.Select(s => returnFirstNumberFromLeftPartTwo(s)).ToList();
-            List<string> listOfFirstNumbersFromRight = listOfStrings.Select(s => returnFirstNumberFromRightPartTwo(s)).ToList();
+            List<string> numbersAsWords = getNumbersAsWords();
+            List<string> numbersAsWordsReversed = getNumbersAsWordsReversed();
+            List<string> stringsReversed = reverseStrings(strings);
 
-            List<string> combinedNumbers = combineLeftAndRightNumberToList(listOfFirstNumbersFromLeft, listOfFirstNumbersFromRight);
+            List<string> firstNumbersFromLeft = strings.Select(s => returnFirstNumberPartTwo(s, numbersAsWords)).ToList();
+            List<string> firstNumbersFromRight = stringsReversed.Select(s => returnFirstNumberPartTwo(s, numbersAsWordsReversed)).ToList();
+
+            List<string> combinedNumbers = combineLeftAndRightNumberToList(firstNumbersFromLeft, firstNumbersFromRight);
 
             int totalSum = addAllNumbersTogether(combinedNumbers);
 
