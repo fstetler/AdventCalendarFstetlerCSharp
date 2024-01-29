@@ -1,4 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace AdventCalendarC_.daytwo {
     public class DayTwo : PrintSolution {
@@ -75,6 +80,7 @@ namespace AdventCalendarC_.daytwo {
 
             return game;
 
+            String 
         }
 
         public static int getNumberOfBall(string currentRound, string color) { 
