@@ -9,7 +9,7 @@ namespace AdventCalendarC_.daytwo {
     public class DayTwo : PrintSolution {
 
         public string getCutString(string currentGame) {
-            return string.Concat(" ", currentGame.AsSpan(currentGame.IndexOf(": ") + 2));
+            return " " + currentGame.Substring(currentGame.IndexOf(": ") + 2);
         }
 
         public List<Round> getListOfRoundsFromCurrentGame(string currentGame, int gameIndex) {
@@ -18,6 +18,7 @@ namespace AdventCalendarC_.daytwo {
             string[] splitString = cutString.Split(";");
             List<string> stringsForGames = new List<string>();
             stringsForGames.AddRange(splitString);
+            stringsForGames.RemoveAt(stringsForGames.Count - 1);
 
             List<Round> rounds = new List<Round>();
 
@@ -41,7 +42,7 @@ namespace AdventCalendarC_.daytwo {
             List<Game> gameObjects = getListOfAllGames(gameStrings);
 
             for (int i = 0; i < gameObjects.Count; i++) {
-                if (gameObjects[i].canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed) {
+                if (gameObjects[i].canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)) {
                     totalSum += gameObjects[i].GameIndex + 1;
                 }
             }
@@ -63,7 +64,7 @@ namespace AdventCalendarC_.daytwo {
             List<Game> gamesAsObjects = new List<Game>();
 
             for (int i = 0; i < gamesAsStrings.Count(); i++) {
-                gamesAsObjects.Add(getGameObjectFromGameString(gamesAsStrings[i], i);
+                gamesAsObjects.Add(getGameObjectFromGameString(gamesAsStrings[i], i));
             }
             return gamesAsObjects;
         }
@@ -79,17 +80,24 @@ namespace AdventCalendarC_.daytwo {
             }
 
             return game;
-
-            String 
         }
 
         public static int getNumberOfBall(string currentRound, string color) { 
             for (int i = 0; i < currentRound.Length; i++) {
-                if (currentRound.Substring(i).StartsWith(color) {
-                    return 10 * 
+                if (currentRound.Substring(i).StartsWith(color)) {
+                    if (characterAtIndexNotBlank(currentRound, i)) {
+                        return 10 * convertCharacterAtIndexToInt(currentRound, i, 3) + convertCharacterAtIndexToInt(currentRound, i, 2);
+                    } else {
+                        return convertCharacterAtIndexToInt(currentRound, i, 2);
+                    }
                 }
             }
+            return 0;
 
+        }
+
+        public static bool characterAtIndexNotBlank(string currentGame, int index) {
+            return !char.IsWhiteSpace(currentGame[index - 3]);
         }
 
         public static int convertCharacterAtIndexToInt(string currentGame, int index, int offset) {
@@ -99,16 +107,16 @@ namespace AdventCalendarC_.daytwo {
         public int results(bool isPartOne) {
             List<string> games = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\AdventCalendarC#\\resources\\daytwo.txt");
             if (isPartOne) {
-                return sumOfAll
+                return sumOfAllValidIDs(games, 13, 14, 12);
             }
+            return totalPowerOfAllGames(games);
         }
 
         public void printSolutionOne() {
-            throw new NotImplementedException();
+        
         }
 
         public void printSolutionTwo() {
-            throw new NotImplementedException();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿
 
+using System.Diagnostics;
+
 namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
