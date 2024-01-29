@@ -19,18 +19,10 @@ namespace AdventCalendarC_.dayone {
         }
 
         public string returnFirstNumberPartOne(string currentString) {
-            String firstNumber = "";
-            for (int i = 0; i < currentString.Length; i++) {
-                if (char.IsDigit(currentString[i])) {
-                    firstNumber = currentString[i].ToString();
-                    break;
-                }
-            }
-            return firstNumber;
+            return currentString.FirstOrDefault(c => char.IsDigit(c)).ToString();
         }
 
         public string returnFirstNumberPartTwo(string currentString, List<string> numbersAsWords) {
-
             for (int i = 0; i < currentString.Length; i++) {
                 if (char.IsDigit(currentString[i])) {
                     return currentString[i].ToString();
@@ -79,13 +71,7 @@ namespace AdventCalendarC_.dayone {
         }
 
         private List<string> combineLeftAndRightNumberToList(List<string> left, List<string> right) {
-            List<string> combinedNumbers = new List<string>();
-
-            for (int i = 0; left.Count > i; i++) {
-                string number =  left[i].ToString() + right[i].ToString();
-                combinedNumbers.Add(number);
-            }
-            return combinedNumbers;
+            return left.Zip(right, (left, right) => left + right).ToList();
         }
 
         private string reverseString(string s) {
