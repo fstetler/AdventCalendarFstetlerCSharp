@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace AdventCalendarC_.daytwo {
+﻿namespace AdventCalendarC_.daytwo {
     public class DayTwo : PrintSolution {
 
         public string getCutString(string currentGame) {
@@ -16,8 +9,7 @@ namespace AdventCalendarC_.daytwo {
 
             string cutString = getCutString(currentGame);
             string[] splitString = cutString.Split(";");
-            List<string> stringsForGames = new List<string>();
-            stringsForGames.AddRange(splitString);
+            List<string> stringsForGames = [.. splitString];
 
             List<Round> rounds = new List<Round>();
 
@@ -32,7 +24,6 @@ namespace AdventCalendarC_.daytwo {
                     getNumberOfBall(roundString, "blue"));
                 rounds.Add(round);
             }
-
             return rounds;
         }
 
