@@ -6,7 +6,8 @@ using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventCalendarC_.dayone {
+namespace AdventCalendarC_.dayone
+{
     public class DayOne : PrintSolution {
 
         public void printSolutionOne() {
