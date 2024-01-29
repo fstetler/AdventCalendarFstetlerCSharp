@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace AdventCalendarC_.daytwo {
-    internal class Round {
+    public class Round {
 
         private string roundString;
         private int roundNumber;
@@ -15,12 +15,42 @@ namespace AdventCalendarC_.daytwo {
         private int numberOfBlue;
 
         public Round(string roundString, int roundNumber, int gameNumber, int numberOfGreen, int numberOfRed, int numberOfBlue) {
-            this.roundString = roundString;
-            this.roundNumber = roundNumber;
-            this.gameNumber = gameNumber;
-            this.numberOfGreen = numberOfGreen;
-            this.numberOfRed = numberOfRed;
-            this.numberOfBlue = numberOfBlue;
+            this.RoundString = roundString;
+            this.RoundNumber = roundNumber;
+            this.GameNumber = gameNumber;
+            this.NumberOfGreen = numberOfGreen;
+            this.NumberOfRed = numberOfRed;
+            this.NumberOfBlue = numberOfBlue;
+        }
+
+        public string RoundString { 
+            get => roundString; 
+            set => roundString = value; 
+        }
+
+        public int RoundNumber {
+            get => roundNumber; 
+            set => roundNumber = value; 
+        }
+
+        public int GameNumber { 
+            get => gameNumber; 
+            set => gameNumber = value;
+        }
+
+        public int NumberOfGreen { 
+            get => numberOfGreen; 
+            set => numberOfGreen = value;
+        }
+
+        public int NumberOfRed { 
+            get => numberOfRed; 
+            set => numberOfRed = value;
+        }
+
+        public int NumberOfBlue { 
+            get => numberOfBlue; 
+            set => numberOfBlue = value; 
         }
     }
 }

@@ -1,11 +1,7 @@
-﻿using AdventCalendarC_;
+﻿
 using AdventCalendarC_.dayone;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AdventCalendarC_.daytwo;
+
 
 namespace AdventCalendarCsharp {
     public class Primary {
@@ -13,6 +9,11 @@ namespace AdventCalendarCsharp {
             DayOne dayOne = new DayOne();
             dayOne.printSolutionOne();
             dayOne.printSolutionTwo();
+
+            DayTwo dayTwo = new DayTwo();
+            dayTwo.printSolutionOne();
+            dayTwo.printSolutionTwo();
+
         }
     }
 }

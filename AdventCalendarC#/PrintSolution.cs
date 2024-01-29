@@ -4,10 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdventCalendarC_
-{
-    internal interface PrintSolution
-    {
+namespace AdventCalendarC_ {
+    public interface PrintSolution {
 
         public void printSolutionOne();
 
