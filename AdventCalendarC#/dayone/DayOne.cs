@@ -7,11 +7,11 @@ namespace AdventCalendarC_.dayone {
 
         public void printSolutionOne() {
             Console.WriteLine("Day One ----------------------------");
-            Console.WriteLine("Part One = " + resultsPartOne(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt")));
+            Console.WriteLine("Part One = " + resultsPartOne(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\AdventCalendarC#\\resources\\dayone.txt")));
         }
 
         public void printSolutionTwo() {
-            Console.WriteLine("Part Two = " + resultsPartTwo(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt")));
+            Console.WriteLine("Part Two = " + resultsPartTwo(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\AdventCalendarC#\\resources\\dayone.txt")));
         }
 
         public string returnFirstNumberPartOne(string currentString) {

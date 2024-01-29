@@ -17,7 +17,7 @@ namespace AdventCalendarC_.daytwo {
             this.gameIndex = gameIndex;
         }
 
-        public Boolean canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) { 
+        public bool canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) { 
             return MaxNumberOfGreenNeeded <= allowedGreen && MaxNumberOfBlueNeeded <= allowedBlue && MaxNumberOfRedNeeded <= allowedRed;
         }
 

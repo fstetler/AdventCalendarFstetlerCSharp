@@ -18,7 +18,6 @@ namespace AdventCalendarC_.daytwo {
             string[] splitString = cutString.Split(";");
             List<string> stringsForGames = new List<string>();
             stringsForGames.AddRange(splitString);
-            stringsForGames.RemoveAt(stringsForGames.Count - 1);
 
             List<Round> rounds = new List<Round>();
 
@@ -43,7 +42,7 @@ namespace AdventCalendarC_.daytwo {
 
             for (int i = 0; i < gameObjects.Count; i++) {
                 if (gameObjects[i].canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)) {
-                    totalSum += gameObjects[i].GameIndex + 1;
+                    totalSum += (gameObjects[i].GameIndex + 1);
                 }
             }
             return totalSum;
@@ -113,10 +112,12 @@ namespace AdventCalendarC_.daytwo {
         }
 
         public void printSolutionOne() {
-        
+            Console.WriteLine("Day One ----------------------------");
+            Console.WriteLine("Part one = " + results(true));
         }
 
         public void printSolutionTwo() {
+            Console.WriteLine("Part two = " + results(false));
         }
     }
 }

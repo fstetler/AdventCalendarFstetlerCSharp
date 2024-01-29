@@ -1,4 +1,5 @@
 ﻿
+using AdventCalendarC_;
 using AdventCalendarC_.dayone;
 using AdventCalendarC_.daytwo;
 
@@ -13,7 +14,6 @@ namespace AdventCalendarCsharp {
             DayTwo dayTwo = new DayTwo();
             dayTwo.printSolutionOne();
             dayTwo.printSolutionTwo();
-
         }
     }
 }
