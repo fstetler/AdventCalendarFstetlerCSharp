@@ -1,29 +1,20 @@
 ﻿namespace AdventCalendarC_.daytwo {
-    public class Round {
+    public class Round(int numberOfGreen, int numberOfRed, int numberOfBlue) {
 
-        private int numberOfGreen;
-        private int numberOfRed;
-        private int numberOfBlue;
-
-        public Round(int numberOfGreen, int numberOfRed, int numberOfBlue) {
-            this.NumberOfGreen = numberOfGreen;
-            this.NumberOfRed = numberOfRed;
-            this.NumberOfBlue = numberOfBlue;
-        }
+        private readonly int numberOfGreen = numberOfGreen;
+        private readonly int numberOfRed = numberOfRed;
+        private readonly int numberOfBlue = numberOfBlue;
 
         public int NumberOfGreen {
             get => numberOfGreen;
-            set => numberOfGreen = value;
         }
 
         public int NumberOfRed {
             get => numberOfRed;
-            set => numberOfRed = value;
         }
 
         public int NumberOfBlue {
             get => numberOfBlue;
-            set => numberOfBlue = value;
         }
     }
 }

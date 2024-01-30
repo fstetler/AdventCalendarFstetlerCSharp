@@ -1,78 +1,70 @@
 ﻿namespace AdventCalendarC_.daytwo {
     public class DayTwo : PrintSolution {
 
-        public int results(bool isPartOne) {
-            List<string> games = Util.getListOfStringsFromFile("resources\\daytwo.txt");
-            if (isPartOne) {
-                return sumOfAllValidIDs(games, 13, 14, 12);
-            }
-            return totalPowerOfAllGames(games);
-        }
-
-        public void printSolutionOne() {
+        public void PrintSolutionOne() {
             Console.WriteLine("Day One ----------------------------");
-            Console.WriteLine("Part one = " + results(true));
+            Console.WriteLine("Part one = " + ResultPartOne());
         }
 
-        public void printSolutionTwo() {
-            Console.WriteLine("Part two = " + results(false));
+        public void PrintSolutionTwo() {
+            Console.WriteLine("Part two = " + ResultsPartTwo());
         }
 
-        public string getCutString(string currentGame) {
+        public string GetCutString(string currentGame) {
             return string.Concat(" ", currentGame.AsSpan(currentGame.IndexOf(": ") + 2));
         }
 
-        public List<Round> getListOfRoundsFromCurrentGame(string currentGame, int gameIndex) {
+        public List<Round> GetListOfRoundsFromCurrentGame(string currentGame, int gameIndex) {
 
-            string cutString = getCutString(currentGame);
+            string cutString = GetCutString(currentGame);
             string[] splitString = cutString.Split(";");
             List<string> stringRoundsForGames = [.. splitString];
 
             List<Round> rounds = [];
 
             return stringRoundsForGames.Select(r => 
-                new Round(getNumberOfBall(r, "green"), getNumberOfBall(r, "red"), getNumberOfBall(r, "blue"))).ToList();
+                new Round(GetNumberOfBall(r, "green"), GetNumberOfBall(r, "red"), GetNumberOfBall(r, "blue"))).ToList();
         }
 
-        public int sumOfAllValidIDs(List<string> gameStrings, int allowedGreen, int allowedBlue, int allowedRed) {
-            List<Game> gameObjects = getListOfAllGames(gameStrings);
-            return gameObjects.Where(g => g.canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)).Select(g => g.GameIndex+1).Sum();
+        public int SumOfAllValidIDs(List<string> gameStrings, int allowedGreen, int allowedBlue, int allowedRed) {
+            List<Game> gameObjects = GetListOfAllGames(gameStrings);
+            return gameObjects.Where(g => g.CanGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)).Select(g => g.GameIndex+1).Sum();
         }
 
-        public int totalPowerOfAllGames(List<string> gameStrings) {
-            List<Game> gameObjects = getListOfAllGames(gameStrings);
+        public int TotalPowerOfAllGames(List<string> gameStrings) {
+            List<Game> gameObjects = GetListOfAllGames(gameStrings);
             return gameObjects.Select(g => g.MaxNumberOfGreenNeeded * g.MaxNumberOfBlueNeeded * g.MaxNumberOfRedNeeded).Sum();
         }
 
-        public List<Game> getListOfAllGames(List<string> gamesAsStrings) {
-            List<Game> gamesAsObjects = new List<Game>();
+        public List<Game> GetListOfAllGames(List<string> gamesAsStrings) {
+            List<Game> gamesAsObjects = [];
 
             for (int i = 0; i < gamesAsStrings.Count(); i++) {
-                gamesAsObjects.Add(getGameObjectFromGameString(gamesAsStrings[i], i));
+                gamesAsObjects.Add(GetGameObjectFromGameString(gamesAsStrings[i], i));
             }
             return gamesAsObjects;
         }
 
-        public Game getGameObjectFromGameString(string currentGameAsString, int index) {
-            List<Round> rounds = getListOfRoundsFromCurrentGame(currentGameAsString, index);
-            Game game = new Game(index);
+        public Game GetGameObjectFromGameString(string currentGameAsString, int index) {
+            List<Round> rounds = GetListOfRoundsFromCurrentGame(currentGameAsString, index);
+            Game game = new(index);
 
             for (int i = 0; i < rounds.Count; i++) {
-                game.maxNumberOfBall(rounds[i], "green");
-                game.maxNumberOfBall(rounds[i], "blue");
-                game.maxNumberOfBall(rounds[i], "red");
+                game.MaxNumberOfBall(rounds[i], "green");
+                game.MaxNumberOfBall(rounds[i], "blue");
+                game.MaxNumberOfBall(rounds[i], "red");
             }
 
             return game;
         }
 
-        public static int getNumberOfBall(string currentRound, string color) {
+        public int GetNumberOfBall(string currentRound, string color) {
             for (int i = 0; i < currentRound.Length; i++) {
                 if (currentRound.Substring(i).StartsWith(color)) {
-                    if (characterAtIndexNotBlank(currentRound, i)) {
-                        return 10 * convertCharacterAtIndexToInt(currentRound, i, 3) + convertCharacterAtIndexToInt(currentRound, i, 2);
+                    if (CharacterAtIndexNotBlank(currentRound, i)) {
+                        return 10 * ConvertCharacterAtIndexToInt(currentRound, i, 3) + ConvertCharacterAtIndexToInt(currentRound, i, 2);
                     } else {
-                        return convertCharacterAtIndexToInt(currentRound, i, 2);
+                        return ConvertCharacterAtIndexToInt(currentRound, i, 2);
                     }
                 }
             }
@@ -80,12 +72,24 @@
 
         }
 
-        public static bool characterAtIndexNotBlank(string currentGame, int index) {
+        private bool CharacterAtIndexNotBlank(string currentGame, int index) {
             return !char.IsWhiteSpace(currentGame[index - 3]);
         }
 
-        public static int convertCharacterAtIndexToInt(string currentGame, int index, int offset) {
+        private int ConvertCharacterAtIndexToInt(string currentGame, int index, int offset) {
             return int.Parse(currentGame[index - offset].ToString());
+        }
+
+        private List<string> InputStrings() {
+            return Util.getListOfStringsFromFile("resources\\daytwo.txt");
+        }
+
+        private int ResultPartOne() {
+            return SumOfAllValidIDs(InputStrings(), 13, 14, 12);
+        }
+
+        private int ResultsPartTwo() {
+            return TotalPowerOfAllGames(InputStrings());
         }
     }
 }

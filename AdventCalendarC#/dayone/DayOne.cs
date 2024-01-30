@@ -1,12 +1,12 @@
 ﻿namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
-        public void printSolutionOne() {
+        public void PrintSolutionOne() {
             Console.WriteLine("Day One ----------------------------");
             Console.WriteLine("Part One = " + resultsPartOne(Util.getListOfStringsFromFile("resources\\dayone.txt")));
         }
 
-        public void printSolutionTwo() {
+        public void PrintSolutionTwo() {
             Console.WriteLine("Part Two = " + resultsPartTwo(Util.getListOfStringsFromFile("resources\\dayone.txt")));
         }
 
