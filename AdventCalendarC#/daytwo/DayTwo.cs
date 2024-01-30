@@ -28,7 +28,7 @@
             string[] splitString = cutString.Split(";");
             List<string> stringsForGames = [.. splitString];
 
-            List<Round> rounds = new List<Round>();
+            List<Round> rounds = [];
 
             for (int i = 0; i < stringsForGames.Count; i++) {
                 string roundString = stringsForGames[i];
@@ -57,14 +57,8 @@
         }
 
         public int totalPowerOfAllGames(List<string> gameStrings) {
-            int totalPower = 0;
-
             List<Game> gameObjects = getListOfAllGames(gameStrings);
-
-            for (int i = 0; i < gameObjects.Count; i++) {
-                totalPower += gameObjects[i].MaxNumberOfGreenNeeded * gameObjects[i].MaxNumberOfBlueNeeded * gameObjects[i].MaxNumberOfRedNeeded;
-            }
-            return totalPower;
+            return gameObjects.Select(g => g.MaxNumberOfGreenNeeded * g.MaxNumberOfBlueNeeded * g.MaxNumberOfRedNeeded).Sum();
         }
 
         public List<Game> getListOfAllGames(List<string> gamesAsStrings) {
