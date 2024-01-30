@@ -1,8 +1,25 @@
 ﻿namespace AdventCalendarC_.daytwo {
     public class DayTwo : PrintSolution {
 
+        public int results(bool isPartOne) {
+            List<string> games = Util.getListOfStringsFromFile("resources\\daytwo.txt");
+            if (isPartOne) {
+                return sumOfAllValidIDs(games, 13, 14, 12);
+            }
+            return totalPowerOfAllGames(games);
+        }
+
+        public void printSolutionOne() {
+            Console.WriteLine("Day One ----------------------------");
+            Console.WriteLine("Part one = " + results(true));
+        }
+
+        public void printSolutionTwo() {
+            Console.WriteLine("Part two = " + results(false));
+        }
+
         public string getCutString(string currentGame) {
-            return " " + currentGame.Substring(currentGame.IndexOf(": ") + 2);
+            return string.Concat(" ", currentGame.AsSpan(currentGame.IndexOf(": ") + 2));
         }
 
         public List<Round> getListOfRoundsFromCurrentGame(string currentGame, int gameIndex) {
@@ -63,7 +80,7 @@
             List<Round> rounds = getListOfRoundsFromCurrentGame(currentGameAsString, index);
             Game game = new Game(index);
 
-            for (int i = 0; i < rounds.Count;i++) {
+            for (int i = 0; i < rounds.Count; i++) {
                 game.maxNumberOfBall(rounds[i], "green");
                 game.maxNumberOfBall(rounds[i], "blue");
                 game.maxNumberOfBall(rounds[i], "red");
@@ -72,7 +89,7 @@
             return game;
         }
 
-        public static int getNumberOfBall(string currentRound, string color) { 
+        public static int getNumberOfBall(string currentRound, string color) {
             for (int i = 0; i < currentRound.Length; i++) {
                 if (currentRound.Substring(i).StartsWith(color)) {
                     if (characterAtIndexNotBlank(currentRound, i)) {
@@ -92,23 +109,6 @@
 
         public static int convertCharacterAtIndexToInt(string currentGame, int index, int offset) {
             return int.Parse(currentGame[index - offset].ToString());
-        }
-
-        public int results(bool isPartOne) {
-            List<string> games = Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\AdventCalendarC#\\resources\\daytwo.txt");
-            if (isPartOne) {
-                return sumOfAllValidIDs(games, 13, 14, 12);
-            }
-            return totalPowerOfAllGames(games);
-        }
-
-        public void printSolutionOne() {
-            Console.WriteLine("Day One ----------------------------");
-            Console.WriteLine("Part one = " + results(true));
-        }
-
-        public void printSolutionTwo() {
-            Console.WriteLine("Part two = " + results(false));
         }
     }
 }

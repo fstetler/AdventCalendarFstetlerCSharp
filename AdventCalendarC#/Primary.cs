@@ -1,6 +1,4 @@
-﻿
-using AdventCalendarC_;
-using AdventCalendarC_.dayone;
+﻿using AdventCalendarC_.dayone;
 using AdventCalendarC_.daytwo;
 
 

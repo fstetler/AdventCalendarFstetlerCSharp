@@ -17,34 +17,34 @@
             this.NumberOfBlue = numberOfBlue;
         }
 
-        public string RoundString { 
-            get => roundString; 
-            set => roundString = value; 
+        public string RoundString {
+            get => roundString;
+            set => roundString = value;
         }
 
         public int RoundNumber {
-            get => roundNumber; 
-            set => roundNumber = value; 
+            get => roundNumber;
+            set => roundNumber = value;
         }
 
-        public int GameNumber { 
-            get => gameNumber; 
+        public int GameNumber {
+            get => gameNumber;
             set => gameNumber = value;
         }
 
-        public int NumberOfGreen { 
-            get => numberOfGreen; 
+        public int NumberOfGreen {
+            get => numberOfGreen;
             set => numberOfGreen = value;
         }
 
-        public int NumberOfRed { 
-            get => numberOfRed; 
+        public int NumberOfRed {
+            get => numberOfRed;
             set => numberOfRed = value;
         }
 
-        public int NumberOfBlue { 
-            get => numberOfBlue; 
-            set => numberOfBlue = value; 
+        public int NumberOfBlue {
+            get => numberOfBlue;
+            set => numberOfBlue = value;
         }
     }
 }

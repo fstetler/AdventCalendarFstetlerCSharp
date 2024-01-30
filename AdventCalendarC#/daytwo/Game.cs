@@ -10,7 +10,7 @@
             this.gameIndex = gameIndex;
         }
 
-        public bool canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) { 
+        public bool canGameBePlayedWithFollowingBalls(int allowedGreen, int allowedBlue, int allowedRed) {
             return MaxNumberOfGreenNeeded <= allowedGreen && MaxNumberOfBlueNeeded <= allowedBlue && MaxNumberOfRedNeeded <= allowedRed;
         }
 
