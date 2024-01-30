@@ -45,15 +45,8 @@
         }
 
         public int sumOfAllValidIDs(List<string> gameStrings, int allowedGreen, int allowedBlue, int allowedRed) {
-            int totalSum = 0;
             List<Game> gameObjects = getListOfAllGames(gameStrings);
-
-            for (int i = 0; i < gameObjects.Count; i++) {
-                if (gameObjects[i].canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)) {
-                    totalSum += (gameObjects[i].GameIndex + 1);
-                }
-            }
-            return totalSum;
+            return gameObjects.Where(g => g.canGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)).Select(g => g.GameIndex+1).Sum();
         }
 
         public int totalPowerOfAllGames(List<string> gameStrings) {
