@@ -26,22 +26,12 @@
 
             string cutString = getCutString(currentGame);
             string[] splitString = cutString.Split(";");
-            List<string> stringsForGames = [.. splitString];
+            List<string> stringRoundsForGames = [.. splitString];
 
             List<Round> rounds = [];
 
-            for (int i = 0; i < stringsForGames.Count; i++) {
-                string roundString = stringsForGames[i];
-                Round round = new Round(
-                    roundString,
-                    i,
-                    gameIndex,
-                    getNumberOfBall(roundString, "green"),
-                    getNumberOfBall(roundString, "red"),
-                    getNumberOfBall(roundString, "blue"));
-                rounds.Add(round);
-            }
-            return rounds;
+            return stringRoundsForGames.Select(r => 
+                new Round(getNumberOfBall(r, "green"), getNumberOfBall(r, "red"), getNumberOfBall(r, "blue"))).ToList();
         }
 
         public int sumOfAllValidIDs(List<string> gameStrings, int allowedGreen, int allowedBlue, int allowedRed) {
