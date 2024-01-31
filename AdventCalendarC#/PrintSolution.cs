@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventCalendarC_ {
+﻿namespace AdventCalendarC_ {
     public interface PrintSolution {
+        public void PrintSolutionOne();
 
-        public void printSolutionOne();
-
-        public void printSolutionTwo();
+        public void PrintSolutionTwo();
     }
 }

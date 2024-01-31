@@ -1,15 +1,13 @@
-﻿
-
-namespace AdventCalendarC_.dayone {
+﻿namespace AdventCalendarC_.dayone {
     public class DayOne : PrintSolution {
 
-        public void printSolutionOne() {
+        public void PrintSolutionOne() {
             Console.WriteLine("Day One ----------------------------");
-            Console.WriteLine("Part One = " + resultsPartOne(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt")));
+            Console.WriteLine("Part One = " + resultsPartOne(Util.getListOfStringsFromFile("resources\\dayone.txt")));
         }
 
-        public void printSolutionTwo() {
-            Console.WriteLine("Part Two = " + resultsPartTwo(Util.getListOfStringsFromFile("C:\\Programming\\C#\\AdventCalendarC#\\resources\\dayone.txt")));
+        public void PrintSolutionTwo() {
+            Console.WriteLine("Part Two = " + resultsPartTwo(Util.getListOfStringsFromFile("resources\\dayone.txt")));
         }
 
         public string returnFirstNumberPartOne(string currentString) {
@@ -41,7 +39,7 @@ namespace AdventCalendarC_.dayone {
             int totalSum = addAllNumbersTogether(combinedNumbers);
 
             return totalSum;
-         }
+        }
 
         public int resultsPartTwo(List<string> strings) {
             List<string> numbersAsWords = getNumbersAsWords();
@@ -75,11 +73,11 @@ namespace AdventCalendarC_.dayone {
         }
 
         public List<string> getNumbersAsReversedWords() {
-            return ["eno", "owt", "eerht", "ruof", "evif", "xis", "neves", "thgie", "enin"];
+            return getNumbersAsWords().Select(s => reverseString(s)).ToList() ;
         }
 
         public List<string> getNumbersAsWords() {
-            return new List<string>() { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+            return ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
         }
     }
 }
