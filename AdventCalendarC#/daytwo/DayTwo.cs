@@ -22,7 +22,7 @@
             return gamesAsStrings.Select(gs => GetGameObjectFromGameString(gs, gamesAsStrings.IndexOf(gs))).ToList();
         }
 
-        public List<string> getRoundsAsStringsForGames(string cutString) {
+        public List<string> GetRoundsAsStringsForGames(string cutString) {
             string[] splitString = cutString.Split(";");
             List<string> stringRoundsForGames = [.. splitString];
             return stringRoundsForGames;
@@ -31,7 +31,7 @@
         public List<Round> GetListOfRoundsFromCurrentGame(string currentGame) {
 
             string cutString = GetCutString(currentGame);
-            List<string> stringRoundsForGames = getRoundsAsStringsForGames(cutString);
+            List<string> stringRoundsForGames = GetRoundsAsStringsForGames(cutString);
 
             return stringRoundsForGames.Select(r =>
                 new Round(

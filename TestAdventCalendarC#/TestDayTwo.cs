@@ -6,7 +6,7 @@ namespace TestAdventCalendarC_ {
 
         [Test]
         public void TestSumOfIDsFromAcceptableGames() {
-            List<string> games = [
+            List<string> gameStrings = [
                 "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green;",
                 "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue;",
                 "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red;",
@@ -15,13 +15,14 @@ namespace TestAdventCalendarC_ {
             ];
 
             DayTwo dayTwo = new();
-            int totalSum = dayTwo.SumOfAllValidIDs(games, 13, 14, 12);
+            List<Game> gameObjects = dayTwo.GetListOfAllGames(gameStrings);
+            int totalSum = dayTwo.SumOfAllValidIDs(gameObjects, 13, 14, 12);
             Assert.That(totalSum, Is.EqualTo(8));
         }
 
         [Test]
         public void TestSumOfAllPoweredValues() {
-            List<string> games = [
+            List<string> gameStrings = [
                 "Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green;",
                 "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue;",
                 "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red;",
@@ -30,8 +31,8 @@ namespace TestAdventCalendarC_ {
             ];
 
             DayTwo dayTwo = new();
-
-            Assert.That(dayTwo.TotalPowerOfAllGames(games), Is.EqualTo(2286));
+            List<Game> gameObjects = dayTwo.GetListOfAllGames(gameStrings);
+            Assert.That(dayTwo.TotalPowerOfAllGames(gameObjects), Is.EqualTo(2286));
         }
     }
 }
