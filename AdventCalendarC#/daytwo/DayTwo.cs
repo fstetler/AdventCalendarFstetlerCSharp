@@ -11,7 +11,7 @@
         }
 
         public int SumOfAllValidIDs(List<Game> gameObjects, int allowedGreen, int allowedBlue, int allowedRed) {
-            return gameObjects.Where(g => g.CanGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)).Select(g => g.GameIndex+1).Sum();
+            return gameObjects.Where(g => g.CanGameBePlayedWithFollowingBalls(allowedGreen, allowedBlue, allowedRed)).Select(g => g.GameIndex + 1).Sum();
         }
 
         public int TotalPowerOfAllGames(List<Game> gameObjects) {
@@ -29,7 +29,6 @@
         }
 
         private List<Round> GetListOfRoundsFromCurrentGame(string currentGame) {
-
             string cutString = GetCutString(currentGame);
             List<string> stringRoundsForGames = GetRoundsAsStringsForGames(cutString);
 
@@ -64,19 +63,7 @@
         }
 
         private int TotalNumberOfBallsForOneColor(string currentRound, int index) {
-            if (BallColorHasValueOver10(currentRound, index)) {
-                return 10 * ConvertCharacterAtIndexToInt(currentRound, index, 3) + ConvertCharacterAtIndexToInt(currentRound, index, 2);
-            } else {
-                return ConvertCharacterAtIndexToInt(currentRound, index, 2);
-            }
-        }
-
-        private bool BallColorHasValueOver10(string currentGame, int index) {
-            return !char.IsWhiteSpace(currentGame[index - 3]);
-        }
-
-        private int ConvertCharacterAtIndexToInt(string currentGame, int index, int offset) {
-            return int.Parse(currentGame[index - offset].ToString());
+            return int.Parse(currentRound.Substring(index - 3, 2).Trim());
         }
 
         private List<string> InputStrings() {
