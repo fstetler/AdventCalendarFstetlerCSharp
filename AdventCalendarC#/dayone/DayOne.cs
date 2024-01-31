@@ -27,7 +27,7 @@
                 }
             }
 
-            throw new Exception("No number in the string was found");
+            throw new NumberNotFoundException("No number in the string was found");
         }
 
         public int resultsPartOne(List<string> strings) {
