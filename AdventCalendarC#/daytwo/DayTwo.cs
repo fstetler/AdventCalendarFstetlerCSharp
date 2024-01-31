@@ -22,13 +22,13 @@
             return gamesAsStrings.Select(gs => GetGameObjectFromGameString(gs, gamesAsStrings.IndexOf(gs))).ToList();
         }
 
-        public List<string> GetRoundsAsStringsForGames(string cutString) {
+        private List<string> GetRoundsAsStringsForGames(string cutString) {
             string[] splitString = cutString.Split(";");
             List<string> stringRoundsForGames = [.. splitString];
             return stringRoundsForGames;
         }
 
-        public List<Round> GetListOfRoundsFromCurrentGame(string currentGame) {
+        private List<Round> GetListOfRoundsFromCurrentGame(string currentGame) {
 
             string cutString = GetCutString(currentGame);
             List<string> stringRoundsForGames = GetRoundsAsStringsForGames(cutString);
@@ -41,7 +41,7 @@
                 .ToList();
         }
 
-        public Game GetGameObjectFromGameString(string currentGameAsString, int index) {
+        private Game GetGameObjectFromGameString(string currentGameAsString, int index) {
             List<Round> rounds = GetListOfRoundsFromCurrentGame(currentGameAsString);
             Game game = new(index);
 
@@ -54,7 +54,7 @@
             return game;
         }
 
-        public int GetNumberOfBall(string currentRound, string color) {
+        private int GetNumberOfBall(string currentRound, string color) {
             for (int i = 0; i < currentRound.Length; i++) {
                 if (currentRound.Substring(i).StartsWith(color)) {
                     return TotalNumberOfBallsForOneColor(currentRound, i);         
@@ -63,7 +63,7 @@
             return 0;
         }
 
-        public int TotalNumberOfBallsForOneColor(string currentRound, int index) {
+        private int TotalNumberOfBallsForOneColor(string currentRound, int index) {
             if (BallColorHasValueOver10(currentRound, index)) {
                 return 10 * ConvertCharacterAtIndexToInt(currentRound, index, 3) + ConvertCharacterAtIndexToInt(currentRound, index, 2);
             } else {
@@ -71,31 +71,31 @@
             }
         }
 
-        public bool BallColorHasValueOver10(string currentGame, int index) {
+        private bool BallColorHasValueOver10(string currentGame, int index) {
             return !char.IsWhiteSpace(currentGame[index - 3]);
         }
 
-        public int ConvertCharacterAtIndexToInt(string currentGame, int index, int offset) {
+        private int ConvertCharacterAtIndexToInt(string currentGame, int index, int offset) {
             return int.Parse(currentGame[index - offset].ToString());
         }
 
-        public List<string> InputStrings() {
+        private List<string> InputStrings() {
             return Util.getListOfStringsFromFile("resources\\daytwo.txt");
         }
 
-        public int ResultPartOne() {
+        private int ResultPartOne() {
             List<string> inputStrings = InputStrings();
             List<Game> gameObjects = GetListOfAllGames(inputStrings);
             return SumOfAllValidIDs(gameObjects, 13, 14, 12);
         }
 
-        public int ResultsPartTwo() {
+        private int ResultsPartTwo() {
             List<string> inputStrings = InputStrings();
             List<Game> gameObjects = GetListOfAllGames(inputStrings);
             return TotalPowerOfAllGames(gameObjects);
         }
 
-        public string GetCutString(string currentGame) {
+        private string GetCutString(string currentGame) {
             return string.Concat(" ", currentGame.AsSpan(currentGame.IndexOf(": ") + 2));
         }
     }
