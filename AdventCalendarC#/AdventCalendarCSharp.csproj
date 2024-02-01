@@ -12,6 +12,9 @@
     <None Update="resources\dayone.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="resources\daythree.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="resources\daytwo.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
