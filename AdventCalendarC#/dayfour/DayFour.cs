@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayfour {
     public class DayFour : PrintSolution {
 
-        public List<NumbersPerCard> createNumbersPerCardList(List<string> cutStrings) {
-            return cutStrings.Select(cs => )
+        public List<NumbersPerCard> allNumbersPerCard(List<string> cutStrings) {
+            return cutStrings.Select(cs => createNumbersPerCard(cs)).ToList();
         }
 
         public NumbersPerCard createNumbersPerCard(string cutString) {
