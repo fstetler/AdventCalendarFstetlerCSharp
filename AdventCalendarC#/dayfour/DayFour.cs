@@ -7,27 +7,21 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayfour {
     public class DayFour : PrintSolution {
 
-        //public List<NumbersPerCard> createNumbersPerCardList(List<string> cutStrings) {
-        //    return cutStrings.Select(cs => ) 
-        //}
+        public List<NumbersPerCard> createNumbersPerCardList(List<string> cutStrings) {
+            return cutStrings.Select(cs => )
+        }
 
         public NumbersPerCard createNumbersPerCard(string cutString) {
-            List<int> winning = winningNumbers(cutString);
-            List<int> numbers = numbersYouHave(cutString);
+            string winningNumbers = cutString.Split("|").First();
+            string numbersYouHave = cutString.Split("|").Last();
+            List<int> winning = listOfNumbers(winningNumbers);
+            List<int> numbers = listOfNumbers(numbersYouHave);
             return new NumbersPerCard(numbers, winning);
-        }
-
-        private List<int> winningNumbers(string cutString) {
-            return listOfNumbers(cutString.Split("|")[0]);
-        }
-
-        private List<int> numbersYouHave(string cutString) {
-            return listOfNumbers(cutString.Split("|")[1]);
         }
 
 
         private List<int> listOfNumbers(string numbersString) {
-            string[] numbersStrings = numbersString.Trim().Split("\\s+");
+            string[] numbersStrings = numbersString.Trim().Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
             List<int> integerList = new List<int>();
             foreach (string number in numbersStrings) {
                 integerList.Add(int.Parse(number));
