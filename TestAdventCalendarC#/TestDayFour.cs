@@ -16,7 +16,9 @@ namespace TestAdventCalendarC_ {
 
             DayFour dayFour = new DayFour();
             List<string> cutStrings = dayFour.removeFrontPartOfStrings(strings);
-            Console.WriteLine(cutStrings[0]);
+            //List<NumbersPerCard> numbersPerCard = dayFour.allNumbersPerCard(cutStrings);
+            Console.WriteLine(dayFour.createNumbersPerCard(cutStrings[0]).WinningNumbers);
+
         }
 
     }
