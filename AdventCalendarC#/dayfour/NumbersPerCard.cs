@@ -25,6 +25,14 @@ namespace AdventCalendarC_.dayfour {
             return count;
         }
 
+        public int exponentialSumOfNumbersMatchingBetweenOPnHandAndWinningPerGame() {
+            return (int ) Math.Pow(2, totalNumberOfMatchingNumbersPercard() - 1);
+        }
+
+        public int totalNumberOfMatchingNumbersPercard() {
+            return WinningNumbers.Select(wn => NumbersYouHave.Contains(wn)).ToList().Count;
+        }
+
         public void addNUmberOfTotalCards(int numberOfTotalCards) {
             this.NumberOfToTalCardsFIeld += numberOfTotalCards;
         }

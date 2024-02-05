@@ -1,4 +1,5 @@
-﻿using AdventCalendarC_.dayone;
+﻿using AdventCalendarC_.dayfour;
+using AdventCalendarC_.dayone;
 using AdventCalendarC_.daytwo;
 
 
@@ -12,6 +13,10 @@ namespace AdventCalendarCsharp {
             DayTwo dayTwo = new();
             dayTwo.PrintSolutionOne();
             dayTwo.PrintSolutionTwo();
+
+            DayFour dayFour = new();
+            dayFour.PrintSolutionOne();
+            dayFour.PrintSolutionTwo();
         }
     }
 }

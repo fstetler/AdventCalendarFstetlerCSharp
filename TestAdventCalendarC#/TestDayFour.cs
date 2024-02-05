@@ -14,8 +14,8 @@ namespace TestAdventCalendarC_ {
             List<string> strings = [line];
 
             DayFour dayFour = new DayFour();
-            List<string> cutStrings = dayFour.removeFrontPartOfStrings(strings);
-            List<NumbersPerCard> numbersPerCardList = dayFour.allNumbersPerCard(cutStrings);
+            List<string> cutStrings = dayFour.RemoveFrontPartOfStrings(strings);
+            List<NumbersPerCard> numbersPerCardList = dayFour.AllNumbersPerCard(cutStrings);
             NumbersPerCard numberPerCard = numbersPerCardList[0];
 
             int amountOfWinningNumber = 5;
@@ -30,8 +30,8 @@ namespace TestAdventCalendarC_ {
             List<string> strings = ["Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19"];
             
             DayFour dayFour = new DayFour();
-            List<string> cutStrings = dayFour.removeFrontPartOfStrings(strings);
-            List<NumbersPerCard> numbersPerCardList = dayFour.allNumbersPerCard(cutStrings);
+            List<string> cutStrings = dayFour.RemoveFrontPartOfStrings(strings);
+            List<NumbersPerCard> numbersPerCardList = dayFour.AllNumbersPerCard(cutStrings);
             NumbersPerCard numbersPerCard = numbersPerCardList[0];
 
             List<int> winningNumbers = new List<int>() { 13, 32, 20, 16, 61 };
@@ -49,8 +49,8 @@ namespace TestAdventCalendarC_ {
 
             DayFour dayFour = new DayFour();
 
-            List<string> cutStrings = dayFour.removeFrontPartOfStrings(strings);
-            List<NumbersPerCard> numbers = dayFour.allNumbersPerCard(cutStrings);
+            List<string> cutStrings = dayFour.RemoveFrontPartOfStrings(strings);
+            List<NumbersPerCard> numbers = dayFour.AllNumbersPerCard(cutStrings);
 
             List<int> winningNumbersOne = [41, 48, 83, 86, 17];
             List<int> winningNumberTwo = [13, 32, 20, 16, 61];
@@ -72,12 +72,12 @@ namespace TestAdventCalendarC_ {
 
             DayFour dayFour = new DayFour();
 
-            List<string> cutStrings = dayFour.removeFrontPartOfStrings(strings);
-            List<NumbersPerCard> numbers = dayFour.allNumbersPerCard(cutStrings);
-            dayFour.setMatchingNumberPerCard(numbers);
-            dayFour.setNumberOfTotalPerCard(numbers);
+            List<string> cutStrings = dayFour.RemoveFrontPartOfStrings(strings);
+            List<NumbersPerCard> numbers = dayFour.AllNumbersPerCard(cutStrings);
+            dayFour.SetMatchingNumberPerCard(numbers);
+            dayFour.SetNumberOfTotalPerCard(numbers);
 
-            int totalSumOfNumbersForTotalPerCard = dayFour.totalSumFOfNumbersOfTotalPerCard(numbers);
+            int totalSumOfNumbersForTotalPerCard = dayFour.TotalSumFOfNumbersOfTotalPerCard(numbers);
 
             Assert.That(totalSumOfNumbersForTotalPerCard, Is.EqualTo(30));
         }
