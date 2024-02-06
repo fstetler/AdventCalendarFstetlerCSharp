@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 namespace AdventCalendarC_.dayfour {
     public class DayFour : PrintSolution {
 
+        public void PrintSolutionOne() {
+            Console.WriteLine("Day three -----------------------------");
+            Console.WriteLine("Total value of all exponential values is = " + results(true));
+        }
+
+        public void PrintSolutionTwo() {
+            Console.WriteLine("Total sum of all added extra cards are = " + results(false));
+        }
+
         public List<NumbersPerCard> AllNumbersPerCard(List<string> cutStrings) {
             return cutStrings.Select(cs => CreateNumbersPerCard(cs)).ToList();
         }
@@ -25,9 +34,6 @@ namespace AdventCalendarC_.dayfour {
 
         public void SetMatchingNumberPerCard(List<NumbersPerCard> numbersPerCardList) {
             numbersPerCardList.ForEach(n => n.setMatchingNumbers(n.totalNumberOfMatchingNumbersPerCard()));
-            //for (int i = 0; i < numbersPerCardList.Count; i++) {
-            //    numbersPerCardList[i].setMatchingNumbers(numbersPerCardList[i].totalNumberOfMatchingNumbersPerCard());
-            //}
         }
 
         public void SetNumberOfTotalPerCard(List<NumbersPerCard> numbersPerCarList) {
@@ -59,7 +65,7 @@ namespace AdventCalendarC_.dayfour {
             return strings.Select(s => s.Split(":").Last()).ToList();
         }
 
-        public int results(Boolean isPartOne) {
+        public int results(bool isPartOne) {
             List<string> strings = GetStringsFromFile();
             List<string> cutStrings = RemoveFrontPartOfStrings(strings);
             List<NumbersPerCard> allNumbersPercard = AllNumbersPerCard(cutStrings);
@@ -70,15 +76,6 @@ namespace AdventCalendarC_.dayfour {
                 return totalSumOfAllExponentialValues(allNumbersPercard);
             }
             return TotalSumFOfNumbersOfTotalPerCard(allNumbersPercard);
-        }
-
-        public void PrintSolutionOne() {
-            Console.WriteLine("Day three -----------------------------");
-            Console.WriteLine("Total value of all exponential values is = " + results(true));
-        }
-
-        public void PrintSolutionTwo() {
-            Console.WriteLine("Total sum of all added extra cards are = " + results(false));
         }
 
         public List<string> GetStringsFromFile() {
