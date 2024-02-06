@@ -24,9 +24,10 @@ namespace AdventCalendarC_.dayfour {
         }
 
         public void SetMatchingNumberPerCard(List<NumbersPerCard> numbersPerCardList) {
-            for (int i = 0; i < numbersPerCardList.Count; i++) {
-                numbersPerCardList[i].MatchingNumbers = numbersPerCardList[i].totalNumberOfMatchingNumbersPerCard();
-            }
+            numbersPerCardList.ForEach(n => n.setMatchingNumbers(n.totalNumberOfMatchingNumbersPerCard()));
+            //for (int i = 0; i < numbersPerCardList.Count; i++) {
+            //    numbersPerCardList[i].setMatchingNumbers(numbersPerCardList[i].totalNumberOfMatchingNumbersPerCard());
+            //}
         }
 
         public void SetNumberOfTotalPerCard(List<NumbersPerCard> numbersPerCarList) {
@@ -34,15 +35,15 @@ namespace AdventCalendarC_.dayfour {
                 numbersPerCard.addNUmberOfTotalCards(1);
             }
             for (int i = 0; i < numbersPerCarList.Count; i++) {
-                for (int j = i + 1; j <= i + numbersPerCarList[i].MatchingNumbers; j++) {
-                    int numberOfTotalCards = numbersPerCarList[i].getNumberOfToTalCardsFIeld;
+                for (int j = i + 1; j <= i + numbersPerCarList[i].getMatchingNumbers(); j++) {
+                    int numberOfTotalCards = numbersPerCarList[i].getNumberOfTotalCards();
                     numbersPerCarList[j].addNUmberOfTotalCards(numberOfTotalCards);
                 }
             }
         }
 
         public int TotalSumFOfNumbersOfTotalPerCard(List<NumbersPerCard> numbersPerCardList) {
-            return numbersPerCardList.Select(n => n.getNumberOfToTalCardsFIeld).Sum();    
+            return numbersPerCardList.Select(n => n.getNumberOfTotalCards()).Sum();    
         }
 
         private List<int> ListOfNumbers(string numbersString) {
@@ -72,11 +73,12 @@ namespace AdventCalendarC_.dayfour {
         }
 
         public void PrintSolutionOne() {
-            Console.WriteLine(results(true));
+            Console.WriteLine("Day three -----------------------------");
+            Console.WriteLine("Total value of all exponential values is = " + results(true));
         }
 
         public void PrintSolutionTwo() {
-            Console.WriteLine(results(false));
+            Console.WriteLine("Total sum of all added extra cards are = " + results(false));
         }
 
         public List<string> GetStringsFromFile() {

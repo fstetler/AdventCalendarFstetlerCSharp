@@ -21,8 +21,8 @@ namespace TestAdventCalendarC_ {
             int amountOfWinningNumber = 5;
             int amountOfNUmbersOnHand = 8;
 
-            Assert.That(amountOfWinningNumber, Is.EqualTo(numberPerCard.WinningNumbers.Count));
-            Assert.That(amountOfNUmbersOnHand, Is.EqualTo(numberPerCard.NumbersYouHave.Count));
+            Assert.That(amountOfWinningNumber, Is.EqualTo(numberPerCard.getWinningNumbers().Count));
+            Assert.That(amountOfNUmbersOnHand, Is.EqualTo(numberPerCard.getNumbersYouHave().Count));
         }
 
         [Test]
@@ -37,8 +37,8 @@ namespace TestAdventCalendarC_ {
             List<int> winningNumbers = new List<int>() { 13, 32, 20, 16, 61 };
             List<int> numbersYouHave = new List<int>() { 61, 30, 68, 82, 17, 32, 24, 19 };
 
-            Assert.That(winningNumbers, Is.EqualTo(numbersPerCard.WinningNumbers));
-            Assert.That(numbersYouHave, Is.EqualTo(numbersPerCard.NumbersYouHave));
+            Assert.That(winningNumbers, Is.EqualTo(numbersPerCard.getWinningNumbers()));
+            Assert.That(numbersYouHave, Is.EqualTo(numbersPerCard.getNumbersYouHave()));
         }
 
         [Test]
@@ -55,8 +55,8 @@ namespace TestAdventCalendarC_ {
             List<int> winningNumbersOne = [41, 48, 83, 86, 17];
             List<int> winningNumberTwo = [13, 32, 20, 16, 61];
 
-            Assert.That(winningNumbersOne, Is.EqualTo(numbers[0].WinningNumbers));
-            Assert.That(winningNumberTwo, Is.EqualTo(numbers[1].WinningNumbers));
+            Assert.That(winningNumbersOne, Is.EqualTo(numbers[0].getWinningNumbers()));
+            Assert.That(winningNumberTwo, Is.EqualTo(numbers[1].getWinningNumbers()));
         }
 
         [Test]
@@ -75,7 +75,9 @@ namespace TestAdventCalendarC_ {
             List<string> cutStrings = dayFour.RemoveFrontPartOfStrings(strings);
             List<NumbersPerCard> numbers = dayFour.AllNumbersPerCard(cutStrings);
             dayFour.SetMatchingNumberPerCard(numbers);
+            Console.WriteLine(numbers[0].getMatchingNumbers());
             dayFour.SetNumberOfTotalPerCard(numbers);
+            Console.WriteLine(numbers[0].totalNumberOfMatchingNumbersPerCard);
 
             int totalSumOfNumbersForTotalPerCard = dayFour.TotalSumFOfNumbersOfTotalPerCard(numbers);
 

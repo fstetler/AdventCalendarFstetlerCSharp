@@ -1,45 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace AdventCalendarC_.dayfour {
     public class NumbersPerCard {
 
-        private int NumberOfToTalCardsFIeld;
+        private List<int> numbersYouHave;
+
+        private List<int> winningNumbers;
+
+        private int matchingNumbers;
+
+        private int numberOfTotalCards;
+
 
         public NumbersPerCard(List<int> numbersYouHave, List<int> winningNumbers) {
-            this.NumbersYouHave = numbersYouHave;
-            this.WinningNumbers = winningNumbers;
+            this.numbersYouHave = numbersYouHave;
+            this.winningNumbers = winningNumbers;
         }
 
         public int totalNumberOfMatchingNumbersPerCard() {
-            int count = 0;
-            
-            for (int i = 0; i < WinningNumbers.Count; i++) {
-                if (NumbersYouHave.Contains(WinningNumbers[i])) {
-                    count += 1;
+            List<int> matching = new List<int>();
+            for (int i = 0; i < winningNumbers.Count; i++) {
+                if (numbersYouHave.Contains(winningNumbers[i])) {
+                    matching.Add(winningNumbers[i]);
                 }
             }
-            return count;
+            return matching.Count;
         }
 
         public int exponentialSumOfNumbersMatchingBetweenOPnHandAndWinningPerGame() {
-            return (int ) Math.Pow(2, totalNumberOfMatchingNumbersPercard() - 1);
+            return (int ) Math.Pow(2, totalNumberOfMatchingNumbersPerCard() - 1);
         }
 
-        public int totalNumberOfMatchingNumbersPercard() {
-            return WinningNumbers.Select(wn => NumbersYouHave.Contains(wn)).ToList().Count;
+        public int getMatchingNumbers() {
+            return matchingNumbers;
         }
 
+        public void setMatchingNumbers(int matchingNumbers) {
+            this.matchingNumbers = matchingNumbers;
+        }
+
+
+        public int getNumberOfTotalCards() {
+            return numberOfTotalCards;
+        }
+        
         public void addNUmberOfTotalCards(int numberOfTotalCards) {
-            this.NumberOfToTalCardsFIeld += numberOfTotalCards;
+            this.numberOfTotalCards += numberOfTotalCards;
         }
 
-        public List<int> NumbersYouHave { get; set; }
-        public List<int> WinningNumbers { get; set; }
-        public int MatchingNumbers { get; set; }
-        public int getNumberOfToTalCardsFIeld { get => this.NumberOfToTalCardsFIeld; }
+
+        public List<int> getWinningNumbers() {
+            return winningNumbers;
+        }
+
+        public void setWinningNumbers(List<int> winningNumbers) {
+            this.winningNumbers = winningNumbers;
+        }
+
+
+        public List<int> getNumbersYouHave() { 
+            return numbersYouHave;
+        }
+
+        public void setNumbersYouHave(List<int> numbersYouHave) {
+            this.numbersYouHave = numbersYouHave;
+        }
     }
 }

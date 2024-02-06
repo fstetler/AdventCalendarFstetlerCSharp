@@ -2,7 +2,7 @@
     public class DayTwo : PrintSolution {
 
         public void PrintSolutionOne() {
-            Console.WriteLine("Day One ----------------------------");
+            Console.WriteLine("Day Two ----------------------------");
             Console.WriteLine("Part one = " + ResultPartOne());
         }
 
