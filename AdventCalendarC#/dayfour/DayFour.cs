@@ -9,11 +9,11 @@ namespace AdventCalendarC_.dayfour {
 
         public void PrintSolutionOne() {
             Console.WriteLine("Day three -----------------------------");
-            Console.WriteLine("Total value of all exponential values is = " + results(true));
+            Console.WriteLine("Part one = " + results(true));
         }
 
         public void PrintSolutionTwo() {
-            Console.WriteLine("Total sum of all added extra cards are = " + results(false));
+            Console.WriteLine("Part two = " + results(false));
         }
 
         public List<NumbersPerCard> AllNumbersPerCard(List<string> cutStrings) {
@@ -62,7 +62,7 @@ namespace AdventCalendarC_.dayfour {
         }
 
         public List<string> RemoveFrontPartOfStrings(List<string> strings) {
-            return strings.Select(s => s.Split(":").Last()).ToList();
+            return strings.Select(s => s.Split(":")[1]).ToList();
         }
 
         public int results(bool isPartOne) {
